@@ -22,11 +22,10 @@ spec:
         resources:
           requests:
             memory: "256Mi"
-            cpu: "250m"
+            cpu: "100m"
           limits:
             memory: "512Mi"
-            cpu: "500m"
-        # Best Practice: Health Checks
+            cpu: "200m"
         livenessProbe:
           httpGet:
             path: /actuator/health
