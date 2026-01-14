@@ -4,7 +4,7 @@ metadata:
   name: java-app-deployment
   namespace: default
 spec:
-  replicas: 1 # ممكن نزودها بعدين
+  replicas: 3
   selector:
     matchLabels:
       app: java-app
@@ -15,12 +15,10 @@ spec:
     spec:
       containers:
       - name: java-app-container
-        # ⚠️ استبدل YOUR_DOCKER_USERNAME باليوزر بتاعك
-        image: YOUR_DOCKER_USERNAME/devops-java-app:latest 
-        imagePullPolicy: Always # عشان يسحب أحدث نسخة دايما
+        image: zizoo1566/devops-java-app:latest 
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
-        # Best Practice: Resource Management
         resources:
           requests:
             memory: "256Mi"
