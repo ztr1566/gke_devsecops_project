@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app-deployment
+  namespace: default
+spec:
+  replicas: 1 # ممكن نزودها بعدين
+  selector:
+    matchLabels:
+      app: java-app
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      containers:
+      - name: java-app-container
+        # ⚠️ استبدل YOUR_DOCKER_USERNAME باليوزر بتاعك
+        image: YOUR_DOCKER_USERNAME/devops-java-app:latest 
+        imagePullPolicy: Always # عشان يسحب أحدث نسخة دايما
+        ports:
+        - containerPort: 8080
+        # Best Practice: Resource Management
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        # Best Practice: Health Checks
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
