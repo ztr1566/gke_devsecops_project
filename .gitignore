@@ -1,0 +1,21 @@
+# --- Terraform ---
+**/.terraform/*
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+
+# --- Java / Maven ---
+target/
+*.class
+*.jar
+*.war
+.mvn/
+mvnw
+mvnw.cmd
+
+# --- IDEs & OS ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
